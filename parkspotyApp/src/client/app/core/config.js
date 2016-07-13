@@ -11,10 +11,15 @@
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = 'toast-bottom-right';
   }
+    
+  core.config(['ParseProvider', function(ParseProvider) {
+    ParseProvider.initialize('ncxQCwgyxaysIZFzPsJZVeLHnBIHlXglsnGmvmid', 'XlVk1kRlIQOMg07WaIPoZsK9GAn7UHm394kp2a0W');
+    ParseProvider.serverURL = 'https://parseapi.back4app.com';
+  }]);    
 
   var config = {
-    appErrorPrefix: '[helloWorld Error] ',
-    appTitle: 'helloWorld'
+    appErrorPrefix: '[PSpots Error] ',
+    appTitle: 'Parkspoty 2.0'
   };
 
   core.value('config', config);
@@ -30,5 +35,7 @@
     exceptionHandlerProvider.configure(config.appErrorPrefix);
     routerHelperProvider.configure({ docTitle: config.appTitle + ': ' });
   }
+    
+  console.log('test config');
 
 })();

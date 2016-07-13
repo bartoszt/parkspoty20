@@ -1,0 +1,21 @@
+<div id="loginPage">
+    <h1>Login page</h1>
+    <form ng-submit="vm.loginUser()">
+        <div class="errorContainer">
+            {{ vm.error }}
+        </div>
+        <div class="row">
+            <label for="loginInput">Your email:</label>
+            <input type="email" ng-model="vm.email" name="email" id="loginInput" />
+        </div>
+        
+        <div class="row">
+            <label for="passInput">Yout password:</label>
+            <input type="password" ng-model="vm.password" name="password" id="passInput" />
+        </div>
+        
+        <input type="submit" id="submit" value="Log in" />
+        
+        <p>You don't have account? <a href="/">Register</a></p>
+    </form>
+</div>
