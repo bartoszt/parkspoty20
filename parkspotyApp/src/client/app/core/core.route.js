@@ -5,10 +5,17 @@
     .module('app.core')
     .run(appRun);
 
+    
   /* @ngInject */
-  function appRun(routerHelper) {
+  function appRun($rootScope, $state, userservice, routerHelper) {
     var otherwise = '/404';
     routerHelper.configureStates(getStates(), otherwise);
+      
+      $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams, error) {
+        if (!userservice.isAuth) {
+          $state.go("logiin");
+        }
+      });
   }
 
   function getStates() {

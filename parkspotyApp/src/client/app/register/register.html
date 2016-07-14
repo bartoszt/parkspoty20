@@ -1,0 +1,35 @@
+<div id="registerPage">
+    <div class="registerFormWrapper" ng-hide="vm.verificationEmailSent">
+        <div class="errorContainer">
+            {{ vm.error }}
+        </div>
+
+        <form id="registerForm" ng-submit="vm.registerUser()">
+            <div class="row">
+                <label>Your e-mail:</label>
+                <input type="email" ng-model="vm.email" placeholder="Your infusion e-mail" />
+            </div>
+
+            <div class="row">
+                <label>Password:</label>
+                <input type="password" ng-model="vm.password" />
+            </div>
+
+            <div class="row">
+                <label>Re-typed password:</label>
+                <input type="password" ng-model="vm.password2" />
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Register"/>
+            </div>
+        </form>
+
+        <p>I have already account. <a href="/login">Log in</a></p>
+    </div>
+    
+    <div class="verifyMessageWrapper" ng-show="vm.verificationEmailSent">
+        <p>Your registration went with success. Now check your email and verify account.</p>
+        <p>I have already verfied account. <a href="/login">Log in</a></p>
+    </div>
+</div>

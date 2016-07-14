@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = [];
+  DashboardController.$inject = ['userservice'];
   /* @ngInject */
-  function DashboardController() {
+  function DashboardController(userservice) {
     var vm = this;
     vm.news = {
       title: 'Parkspoty 2.0 Panel',
@@ -20,7 +20,7 @@
     activate();
 
     function activate() {
-
+        userservice.authRequired()
     }
   }
 })();

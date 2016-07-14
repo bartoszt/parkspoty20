@@ -21,6 +21,7 @@
         
         $scope.logoutMe = function(){
             Parse.User.logOut().then(() => {
+                var currentUser = Parse.User.current();  // this will now be null
                 $timeout(function() {
                     $location.path('/login');
                 },0);

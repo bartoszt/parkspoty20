@@ -7,6 +7,7 @@
     'app.admin',
     'app.dashboard',
     'app.loginpage',
+    'app.register',
     'app.layout',
   ]);
 

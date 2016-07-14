@@ -5,14 +5,16 @@
     .module('app.loginpage')
     .controller('LoginpageController', LoginpageController);
 
-  LoginpageController.$inject = ['$location', '$timeout'];
+  LoginpageController.$inject = ['$location', '$timeout', 'userservice'];
   /* @ngInject */
-  function LoginpageController($location, $timeout) {
+  function LoginpageController($location, $timeout, userservice) {
     var vm = this;
     activate();
 
     function activate() {
-        console.log('activated');  
+        if(userservice.isAuth()) {
+            $location.path('/');   
+        }
     }
 
     vm.loginUser = function() {
@@ -21,9 +23,14 @@
             
             Parse.User.logIn(vm.email, vm.password, {
               success: function(user) {
-                $timeout(function() {
-                   $location.path("/"); 
-                }, 0);
+                  if (user.attributes.emailVerified) {
+                    $timeout(function() {
+                       $location.path("/"); 
+                    }, 0);
+                  } else {
+                      Parse.User.logOut();
+                      vm.error = "Please verify your email first. Find message in your mailbox with activation link.";
+                  }
               },
               error: function(user, error) {
                 vm.error = error.message;
